@@ -1,12 +1,36 @@
 import { Link } from 'react-router-dom'
 import useFetchUser from '../hooks/useFetchUser'
 import User from './User'
+import { useState } from 'react'
 const UserList = () => {
-    const {userData} = useFetchUser()
+    const [role,setRole] = useState('author')
+    const {userData,fetchUser} = useFetchUser()
+
+    const fetchUserData = (role) => {
+        console.log(role)
+        setRole(role)
+        fetchUser(role)
+    }
+    
     return (
         <div className="max-w-2xl mx-auto mt-16">
             <h1 className='mb-10 text-3xl font-bold'>User List</h1>
             <Link to="/"><button className='p-2 m-2 bg-slate-400 rounded shadow-lg font-bold text-white mb-2'>Create User</button></Link>
+            <div className="-mx-3 mb-2">
+          <div className="w-full px-3 mb-6 md:mb-0">
+            <label className="text-sm font-bold mb-2">Role</label>
+            <div className="relative">
+              <select className={`appearance-none w-1/4 bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded  focus:outline-none
+               focus:bg-white focus:border-gray-500`} value={role} onChange={(e) => fetchUserData(e.target.value)}>
+                <option value="">Select Role</option>
+                <option value="author">Author</option>
+                <option value="editor">Editor</option>
+                <option value="subscriber">Subscriber</option>
+                <option value="administrator">Administrator</option>
+              </select>
+            </div>
+          </div>
+        </div>
         <div className="flex flex-col">
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full align-middle">

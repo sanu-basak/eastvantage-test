@@ -14,11 +14,10 @@ const useUserRegister = () => {
             const data = await response.data
             setResponse(data)
         } catch (err) {
-            
             setError(err)
-        } finally {
-            
         }
+
+        return {response,error}
    }
 
    return {response,registerUser,error}

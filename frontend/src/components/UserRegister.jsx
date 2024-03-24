@@ -19,24 +19,25 @@ const UserRegister = () => {
     setRole('')
   }
 
-  const submitHandler = (e) => {
-    e.preventDefault()
+  const submitHandler = async () => {
     setErrResponse(null)
     const isUserValidate = validateUser(name,email,role)
-    if(isUserValidate){
-        registerUser(name,email,role)
-        if(error?.response?.data?.status){
-          resetForm()
-          navigate('/user-list')
-        }else{
-          setErrResponse(error?.response?.data?.message)
-        }
-        
+    if (isUserValidate) {
+      const res = await registerUser(name, email, role);
+      console.log(res)
+      if(res?.response){
+        resetForm()
+        navigate('/user-list')
+      }
+
+      if(res?.error){
+        setErrResponse(error.response.data.message)
+      }
     }
   }
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-2xl p-11 mt-20 m-auto">
+    <div className="max-w-sm rounded overflow-hidden shadow-2xl p-11 mt-30 m-auto">
       <h1 className=" text-gray-700 text-3xl font-bold mb-10 mt-10">
         User Register
       </h1>

@@ -4,9 +4,9 @@ import { useEffect, useState } from "react"
 
 const useFetchUser = () => {
     const [userData,setUserData] = useState([])
-    const fetchUser = async () => {
+    const fetchUser = async (role = 'author') => {
         try {
-            const response = await axios.get(API_URL+'get-all-user')
+            const response = await axios.get(API_URL+'get-all-user?role='+role)
             setUserData(response.data)
         } catch (err) {
             console.log(err)
@@ -17,7 +17,7 @@ const useFetchUser = () => {
         fetchUser()
     },[])
 
-    return { userData }
+    return { userData , fetchUser}
 }
 
 export default useFetchUser
