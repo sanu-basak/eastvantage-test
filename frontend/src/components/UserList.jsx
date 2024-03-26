@@ -7,7 +7,6 @@ const UserList = () => {
     const {userData,fetchUser} = useFetchUser()
 
     const fetchUserData = (role) => {
-        console.log(role)
         setRole(role)
         fetchUser(role)
     }
@@ -31,7 +30,7 @@ const UserList = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
         <div className="overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full align-middle">
                 <div className="overflow-hidden ">
@@ -49,9 +48,6 @@ const UserList = () => {
                                 </th>
                                 <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                     Role
-                                </th>
-                                <th scope="col" className="p-4">
-                                    <span className="sr-only">Edit</span>
                                 </th>
                             </tr>
                         </thead>

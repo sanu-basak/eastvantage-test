@@ -13,7 +13,6 @@ const User = ({user}) => {
         <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {user.role}
         </td>
-        <td className="py-4 px-6 text-sm font-medium text-right whitespace-nowrap"></td>
       </tr>
   );
 };

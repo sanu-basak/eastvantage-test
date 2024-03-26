@@ -10,7 +10,7 @@ const UserRegister = () => {
   const [errResponse, setErrResponse] = useState('');
 
   const {nameErr, emailErr, roleErr, validateUser} = useFormValidation()
-  const {registerUser,error} = useUserRegister()
+  const {registerUser} = useUserRegister()
   const navigate = useNavigate()
 
   const resetForm = () => {
@@ -23,14 +23,12 @@ const UserRegister = () => {
     setErrResponse(null)
     const isUserValidate = validateUser(name,email,role)
     if (isUserValidate) {
-      const res = await registerUser(name, email, role);
-      console.log(res)
-      if(res?.response){
+      const {response,error} = await registerUser(name, email, role);
+      if(response){
         resetForm()
         navigate('/user-list')
       }
-
-      if(res?.error){
+      if(error){
         setErrResponse(error.response.data.message)
       }
     }
